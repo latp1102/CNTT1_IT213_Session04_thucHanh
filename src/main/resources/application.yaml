@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: ThucHanh
+  datasource:
+    url: jdbc:mysql://localhost:3306/ThucHanh?createDatabaseIfNotExist=true
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
+      database-platform: org.hibernate.dialect.MySQLDialect
+
+    ai:
+      openai:
+        base-url: https://generativelanguage.googleapis.com/v1beta/openai/
+        api-key: AIzaSyDbfISs_dtaWdFIJMxIlIpn8utmdOrZhKg
+        chat:
+          options:
+            model: gemini-flash-lite-latest
+
+  server:
+    port: 8080
