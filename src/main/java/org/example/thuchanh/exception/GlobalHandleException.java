@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-public class HandleException {
+public class GlobalHandleException {
     private final ChatClient chatClient;
 
-    public HandleException(ChatClient.Builder chatClient) {
+    public GlobalHandleException(ChatClient.Builder chatClient) {
         this.chatClient = chatClient.build();
     }
 
@@ -29,6 +29,18 @@ public class HandleException {
                 bạn hãy format lại và trả lời khách hàng nhé :
                 %s
                 """.formatted(errors.stream().collect(Collectors.joining("\n")));
+        return chatClient.prompt()
+                .user(prompt)
+                .call()
+                .content();
+    }
+    @ExceptionHandler(Exception.class)
+    public String handleException(Exception e) {
+        String prompt = """
+                Dưới đây là thông tin các lỗi mà người dùng nhập thiếu khi đặt phòng, 
+                bạn hãy format lại và trả lời khách hàng nhé :
+                %s
+                """.formatted(e.getMessage());
         return chatClient.prompt()
                 .user(prompt)
                 .call()

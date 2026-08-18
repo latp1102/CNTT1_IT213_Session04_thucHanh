@@ -1,11 +1,12 @@
 package org.example.thuchanh.model.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.*;
+@AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
+@Builder
 public class ChatRequest {
     @NotBlank(message = "Tin nhắn không được để trống")
     private String message;
