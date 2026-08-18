@@ -8,6 +8,8 @@ import org.example.thuchanh.repository.BookingRepository;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.converter.BeanOutputConverter;
 
+import java.time.LocalDateTime;
+
 public class BookingService {
     private final BookingRepository bookingRepository;
     private final ChatClient chatClient;
@@ -42,7 +44,7 @@ public class BookingService {
                     .checkInDate(bookingRequestDTO.getCheckInDate())
                     .checkOutDate(bookingRequestDTO.getCheckOutDate())
                     .numberOfPeople(bookingRequestDTO.getNumberOfPeople())
-                    .createdDate(java.time.LocalDateTime.now())
+                    .createdDate(LocalDateTime.now())
                     .build();
 
             bookingRepository.save(booking);
